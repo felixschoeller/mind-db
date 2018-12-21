@@ -1,0 +1,2211 @@
+    newline: #"^/"
+prefixe: make object! [
+
+
+	; champs
+	sujet: "http://www.mhdb.org/sujet"
+	predicat: "http://www.mhdb.org/predicat"
+	objet: "http://www.mhdb.org/object"
+	Litteraux: "http://www.mhdb.org/schema#"
+
+	XML_rdf: "xmlns:rdf=^"http://www.w3.org/1999/02/22-rdf-syntax-ns#^""
+	XML_rdfs: "xmlns:rdfs=^"http://www.w3.org/2000/01/rdf-schema#^""
+	XML_xml: "xmlns:rdfs=^"http://www.w3.org/XML/1998/namespace^""
+	XML_xsd: "xmlns:xsd=^"http://www.w3.org/2001/XMLschema#^""
+
+	XML_gn: "xmlns:gn=^"http://www.geonames.org/ontology#^""
+	XML_owl: "xmlns:owl=^"http://www.w3.org/2002/07/owl#^""
+
+	XML_wgs: "xmlns:wgs=^"http://www.w3.org/2003/01/geo/wgs84_pos#^""
+	XML_xsd: "xmlns:xsd=^"http://www.w3.org/2001/XMLSchema#^""
+	XML_dcterms: "xmlns:dcterms=^"http://purl.org/dc/terms/^""
+	XML_void: "xmlns:void=^"http://rdfs.org/void#^""
+
+	XML_dc: "xmlns:dc=^"http://purl.org/dc/elements/1.1/^""
+	XML_vcard: "xmlns:vcard=^"http://www.w3.org/2001/vcard-rdf/3.0#^""
+	XML_foaf: "xmlns:foaf=^"http://xmlns.com/foaf/0.1/^""
+
+	XML_dbpedia-owl:"xmlns:dbpedia-owl=^"http://dbpedia.org/ontology/^""
+	XML_dbpprop:"xmlns:dbpprop=^"http://dbpedia.org/property/^""
+	XML_dbpedia:"xmlns:dbpedia=^"http://dbpedia.org/ressource/^""
+
+	XML_geo: "xmlns:geo=^"http://www.w3.org/2003/01/geo/wgs84_pos#^""
+	XML_omgeo: "xmlns:omgeo=^"http://www.ontotext.com/owlim/geo#^""
+
+	XML_data: "xmlns:data=^"http://examples.ontotext.com/family/data#^""
+	XML_family: "xmlns:family=^"http://examples.ontotext.com/family#^""
+]
+
+SplitGCI: function [data] [my s t] [
+	t: array(0)
+	my: replace/all data"," "& ="
+	s: decode-cgi join " =" my
+	append t second s
+	return t
+]
+
+FormXML: function [contenu] [a] [
+	a: join "<?xml version=^"1.0^" encoding=^"ISO-8859-1^"?>" newline
+	a: rejoin [a "<rdf:RDF " prefixe/XML_rdf newline ]
+	a: rejoin [a "  xmlns:mhdb=^"" prefixe/Litteraux "^"" ">" newline ]
+	a: rejoin [a contenu newline ]
+	a: rejoin [a "</rdf:RDF>" newline ]
+	return a
+]
+debut: function [data longueur ] [t s] [
+	data: to-string data
+	s: ""
+	t: 0
+	foreach ee data [
+		t: t + 1
+		if t < longueur[ s: join s ee]
+		
+	]
+
+	return s
+]
+BXML: "" ;do [ rejoin ["<?xml version=^"1.0^" encoding=^"ISO-8859-1^"?>" newline 
+		"<rdf:RDF " prefixe/XML_rdf newline 
+		prefixe/XML_data newline 
+		prefixe/XML_family newline 
+		"xmlns:dc=^"http://purl.org/dc/elements/1.1/^"" newline
+		"  xmlns:mhdb=^"" prefixe/Litteraux "^"" ">" newline ]
+	]
+
+FXML: "" ;do [ rejoin ["</rdf:RDF>" newline ]
+	]
+
+HTTP20: FUNCTION [DATA] [E ff k y S] [
+	S: ""
+	E: to-string data
+	foreach ff E [
+		k: to-binary ff
+		do rejoin ["y: ^"" k "^"" ]
+		y: replace y "#" ""
+		y: replace y "{" ""
+		y: replace y "}" ""
+		print y
+	]
+	
+]
+Bin2Str: function [enree] [sortie k y] [
+		k: to-binary enree
+		do rejoin ["y: ^"" k "^"" ]
+		y: replace y "=" ""
+		y: replace y "{" ""
+		y: replace y "}" ""
+		sortie: y
+		return sortie
+]
+
+a: read/lines %/C/Users/toto/Desktop/MHDB/f1cA-Index.csv
+
+compt: 0
+
+regle: [copy F1cA to "£" skip copy F1cB to "£" skip copy F1cC to "£" skip copy F1cD to "£" skip copy F1cE to "£" skip copy F1cF to "£" skip copy F1cG to "£" skip copy F1cH to "£" skip copy F1cI to "£" skip copy F1cJ to "£" skip copy F1cK to "£" skip copy F1cL to "£" skip copy F1cM to "£" skip copy F1cN to "£" skip copy F1cO to "£" skip copy F1cP to "£" skip copy F1cQ to "£" skip copy F1cR to end]
+
+foreach ee a [
+	ee: replace/all ee "Â" ""
+
+
+	parse ee regle
+
+	if none? F1cA [F1cA: ""]
+	if none? F1cB [F1cB: ""]
+	if none? F1cC [F1cC: ""]
+	if none? F1cD [F1cD: ""]
+	if none? F1cE [F1cE: ""]
+	if none? F1cF [F1cF: ""]
+	if none? F1cG [F1cG: ""]
+	if none? F1cH [F1cH: ""]
+	if none? F1cI [F1cI: ""]
+	if none? F1cJ [F1cJ: ""]
+	if none? F1cK [F1cK: ""]
+	if none? F1cL [F1cL: ""]
+	if none? F1cM [F1cM: ""]
+	if none? F1cN [F1cN: ""]
+	if none? F1cO [F1cO: ""]
+	if none? F1cP [F1cP: ""]
+	if none? F1cQ [F1cQ: ""]
+	if none? F1cR [F1cR: ""]
+
+	do rejoin [ "F1cAL" compt ": ^"" F1cA "^""]
+	either compt = 0 [
+		do rejoin [ "F1cBL" compt ": ^"" F1cB "^""]
+	][
+		do rejoin [ "F1cBL" compt ":  " to-binary F1cB ]
+	]
+
+	do rejoin [ "F1cCL" compt ": ^"" F1cC "^""]
+	do rejoin [ "F1cDL" compt ": ^"" F1cD "^""]
+	do rejoin [ "F1cEL" compt ": ^"" F1cE "^""]
+	do rejoin [ "F1cFL" compt ": ^"" F1cF "^""]
+	do rejoin [ "F1cGL" compt ": ^"" F1cG "^""]
+	do rejoin [ "F1cHL" compt ": ^"" F1cH "^""]
+	do rejoin [ "F1cIL" compt ": ^"" F1cI "^""]
+	do rejoin [ "F1cJL" compt ": ^"" F1cJ "^""]
+	do rejoin [ "F1cKL" compt ": ^"" F1cK "^""]
+	do rejoin [ "F1cLL" compt ": ^"" F1cL "^""]
+	do rejoin [ "F1cML" compt ": ^"" F1cM "^""]
+	do rejoin [ "F1cNL" compt ": ^"" F1cN "^""]
+	do rejoin [ "F1cOL" compt ": ^"" F1cO "^""]
+	do rejoin [ "F1cPL" compt ": ^"" F1cP "^""]
+	do rejoin [ "F1cQL" compt ": ^"" F1cQ "^""]
+	do rejoin [ "F1cRL" compt ": ^"" F1cR "^""]
+
+
+	compt: compt + 1
+]
+f1-compt: compt - 1
+
+a: read/lines %/C/Users/toto/Desktop/MHDB/f2cC-DataOrTheory.csv
+
+
+compt: 0
+
+regle: [copy F2cA to "£" skip copy F2cB to end]
+foreach ee a [
+	ee: replace/all ee "Â" ""
+
+
+	parse ee regle
+
+	if none? F2cA [F2cA: ""]
+	if none? F2cB [F2cB: ""]
+
+	do rejoin [ "F2cAL" compt ": ^"" F2cA "^""]
+
+	either compt = 0 [
+		do rejoin [ "F2cBL" compt ": ^"" F2cB "^""]
+	][
+		do rejoin [ "F2cBL" compt ":  " to-binary F2cB ]
+	]
+
+
+	compt: compt + 1
+]
+f2-compt: compt - 1
+
+a: read/lines %/C/Users/toto/Desktop/MHDB/f3cL-Inference.csv
+
+
+compt: 0
+
+regle: [copy F3cA to "£" skip copy F3cB to end]
+foreach ee a [
+	ee: replace/all ee "Â" ""
+
+
+	parse ee regle
+
+	if none? F3cA [F3cA: ""]
+	if none? F3cB [F3cB: ""]
+
+	do rejoin [ "F3cAL" compt ": ^"" F3cA "^""]
+
+	either compt = 0 [
+		do rejoin [ "F3cBL" compt ": ^"" F3cB "^""]
+	][
+		do rejoin [ "F3cBL" compt ":  " to-binary F3cB ]
+	]
+
+
+	compt: compt + 1
+]
+f3-compt: compt - 1
+
+a: read/lines %/C/Users/toto/Desktop/MHDB/f4cK-SubjectiveMeasure.csv
+
+
+compt: 0
+
+regle: [copy F4cA to "£" skip copy F4cB to end]
+foreach ee a [
+	ee: replace/all ee "Â" ""
+
+
+	parse ee regle
+
+	if none? F4cA [F4cA: ""]
+	if none? F4cB [F4cB: ""]
+
+	do rejoin [ "F4cAL" compt ": ^"" F4cA "^""]
+	either compt = 0 [
+		do rejoin [ "F4cBL" compt ": ^"" F4cB "^""]
+	][
+		do rejoin [ "F4cBL" compt ":  " to-binary F4cB ]
+	]
+
+
+
+	compt: compt + 1
+]
+f4-compt: compt - 1
+
+a: read/lines %/C/Users/toto/Desktop/MHDB/f5cO-DefinitionOfChills_index.csv
+
+
+compt: 0
+
+regle: [copy F5cA to "£" skip copy F5cB to end]
+foreach ee a [
+	ee: replace/all ee "Â" ""
+
+
+	parse ee regle
+
+	if none? F5cA [F5cA: ""]
+	if none? F5cB [F5cB: ""]
+
+	do rejoin [ "F5cAL" compt ": ^"" F5cA "^""]
+	either compt = 0 [
+		do rejoin [ "F5cBL" compt ": ^"" F5cB "^""]
+	][
+		do rejoin [ "F5cBL" compt ":  " to-binary F5cB ]
+	]
+
+
+
+	compt: compt + 1
+]
+f5-compt: compt - 1
+
+a: read/lines %/C/Users/toto/Desktop/MHDB/f6-StimulusDescription.csv
+
+
+compt: 0
+
+regle: [copy F6cA to "£" skip copy F6cB to end]
+foreach ee a [
+	ee: replace/all ee "Â" ""
+
+
+	parse ee regle
+
+	if none? F6cA [F6cA: ""]
+	if none? F6cB [F6cB: ""]
+
+	do rejoin [ "F6cAL" compt ": ^"" F6cA "^""]
+	either compt = 0 [
+		do rejoin [ "F6cBL" compt ": ^"" F6cB "^""]
+	][
+		do rejoin [ "F6cBL" compt ":  " to-binary F6cB ]
+	]
+
+
+
+	compt: compt + 1
+]
+f6-compt: compt - 1
+
+a: read/lines %/C/Users/toto/Desktop/MHDB/f7cD-ResearchStudyOnProjectLink1.csv
+
+
+compt: 0
+
+regle: [copy F7cA to "£" skip copy F7cB to "£" skip copy F7cC to end]
+foreach ee a [
+	ee: replace/all ee "Â" ""
+
+
+	parse ee regle
+
+	if none? F7cA [F7cA: ""]
+	if none? F7cB [F7cB: ""]
+	if none? F7cC [F7cC: ""]
+
+	do rejoin [ "F7cAL" compt ": ^"" F7cA "^""]
+	either compt = 0 [
+		do rejoin [ "F7cBL" compt ": ^"" F7cB "^""]
+	][
+		do rejoin [ "F7cBL" compt ":  " to-binary F7cB ]
+	]
+
+	do rejoin [ "F7cCL" compt ": ^"" F7cC "^""]
+
+	compt: compt + 1
+]
+f7-compt: compt - 1
+
+a: read/lines %/C/Users/toto/Desktop/MHDB/f8cP-URL_stimulus.csv
+
+
+compt: 0
+
+regle: [copy F8cA to "£" skip copy F8cB to end]
+foreach ee a [
+	ee: replace/all ee "Â" ""
+
+
+	parse ee regle
+
+	if none? F8cA [F8cA: ""]
+	if none? F8cB [F8cB: ""]
+
+	do rejoin [ "F8cAL" compt ": ^"" F8cA "^""]
+	either compt = 0 [
+		do rejoin [ "F8cBL" compt ": ^"" F8cB "^""]
+	][
+		do rejoin [ "F8cBL" compt ":  " to-binary F8cB ]
+	]
+
+
+
+	compt: compt + 1
+]
+f8-compt: compt - 1
+
+a: read/lines %/C/Users/toto/Desktop/MHDB/f9cN-BrainAreas.csv
+
+
+compt: 0
+
+regle: [copy F9cA to "£" skip copy F9cB to end]
+foreach ee a [
+	ee: replace/all ee "Â" ""
+
+
+	parse ee regle
+
+	if none? F9cA [F9cA: ""]
+	if none? F9cB [F9cB: ""]
+
+	do rejoin [ "F9cAL" compt ": ^"" F9cA "^""]
+	either compt = 0 [
+		do rejoin [ "F9cBL" compt ": ^"" F9cB "^""]
+	][
+		do rejoin [ "F9cBL" compt ":  " to-binary F9cB ]
+	]
+
+
+
+	compt: compt + 1
+]
+f9-compt: compt - 1
+
+a: read/lines %/C/Users/toto/Desktop/MHDB/f10cM-claims.csv
+
+
+compt: 0
+
+regle: [copy F10cA to "£" skip copy F10cB to end]
+foreach ee a [
+	ee: replace/all ee "Â" ""
+
+
+	parse ee regle
+
+	if none? F10cA [F10cA: ""]
+	if none? F10cB [F10cB: ""]
+
+	do rejoin [ "F10cAL" compt ": ^"" F10cA "^""]
+	either compt = 0 [
+		do rejoin [ "F10cBL" compt ": ^"" F10cB "^""]
+	][
+		do rejoin [ "F10cBL" compt ":  " to-binary F10cB ]
+	]
+
+
+
+	compt: compt + 1
+]
+f10-compt: compt - 1
+
+a: read/lines %/C/Users/toto/Desktop/MHDB/f11cF-StimulusCategory.csv
+
+
+compt: 0
+
+regle: [copy F11cA to "£" skip copy F11cB to end]
+foreach ee a [
+	ee: replace/all ee "Â" ""
+
+
+	parse ee regle
+
+	if none? F11cA [F11cA: ""]
+	if none? F11cB [F11cB: ""]
+
+	do rejoin [ "F11cAL" compt ": ^"" F11cA "^""]
+	either compt = 0 [
+		do rejoin [ "F11cBL" compt ": ^"" F11cB "^""]
+	][
+		do rejoin [ "F11cBL" compt ":  " to-binary F11cB ]
+	]
+
+
+
+	compt: compt + 1
+]
+f11-compt: compt - 1
+
+a: read/lines %/C/Users/toto/Desktop/MHDB/f12cJ-SubjectiveSensor.csv
+
+
+compt: 0
+
+regle: [copy F12cA to "£" skip copy F12cB to end]
+foreach ee a [
+	ee: replace/all ee "Â" ""
+
+
+	parse ee regle
+
+	if none? F12cA [F12cA: ""]
+	if none? F12cB [F12cB: ""]
+
+	do rejoin [ "F12cAL" compt ": ^"" F12cA "^""]
+	either compt = 0 [
+		do rejoin [ "F12cBL" compt ": ^"" F12cB "^""]
+	][
+		do rejoin [ "F12cBL" compt ":  " to-binary F12cB ]
+	]
+
+
+
+	compt: compt + 1
+]
+f12-compt: compt - 1
+
+a: read/lines %/C/Users/toto/Desktop/MHDB/f13cE-ChillsPeople.csv
+
+
+compt: 0
+
+regle: [copy F13cA to "£" skip copy F13cB to "£" skip copy F13cC to "£" skip copy F13cD to "£" skip copy F13cE to "£" skip copy F13cF to "£" skip copy F13cG to "£" skip copy F13cH to "£" skip copy F13cI to "£" skip copy F13cJ to "£" skip copy F13cK to "£" skip copy F13cL to "£" skip copy F13cM to "£" skip copy F13cN to "£" skip copy F13cO to "£" skip copy F13cP to end]
+
+foreach ee a [
+	ee: replace/all ee "Â" ""
+
+
+	parse ee regle
+
+	if none? F13cA [F13cA: ""]
+	if none? F13cB [F13cB: ""]
+	if none? F13cC [F13cC: ""]
+	if none? F13cD [F13cD: ""]
+	if none? F13cE [F13cE: ""]
+	if none? F13cF [F13cF: ""]
+	if none? F13cG [F13cG: ""]
+	if none? F13cH [F13cH: ""]
+	if none? F13cI [F13cI: ""]
+	if none? F13cJ [F13cJ: ""]
+	if none? F13cK [F13cK: ""]
+	if none? F13cL [F13cL: ""]
+	if none? F13cM [F13cM: ""]
+	if none? F13cN [F13cN: ""]
+	if none? F13cO [F13cO: ""]
+	if none? F13cP [F13cP: ""]
+
+	do rejoin [ "F13cAL" compt ": ^"" F13cA "^""]
+	either compt = 0 [
+		do rejoin [ "F13cBL" compt ": ^"" F13cB "^""]
+	][
+		do rejoin [ "F13cBL" compt ":  " to-binary F13cB ]
+	]
+
+	either compt = 0 [
+		do rejoin [ "F13cCL" compt ": ^"" F13cC "^""]
+	][
+		do rejoin [ "F13cCL" compt ":  " to-binary F13cC ]
+	]
+
+	either compt = 0 [
+		do rejoin [ "F13cDL" compt ": ^"" F13cD "^""]
+	][
+		do rejoin [ "F13cDL" compt ":  " to-binary F13cD ]
+	]
+
+	either compt = 0 [
+		do rejoin [ "F13cEL" compt ": ^"" F13cE "^""]
+	][
+		do rejoin [ "F13cEL" compt ":  " to-binary F13cE ]
+	]
+
+	either compt = 0 [
+		do rejoin [ "F13cFL" compt ": ^"" F13cF "^""]
+	][
+		do rejoin [ "F13cFL" compt ":  " to-binary F13cF ]
+	]
+
+	do rejoin [ "F13cGL" compt ": ^"" F13cG "^""]
+	do rejoin [ "F13cHL" compt ": ^"" F13cH "^""]
+	do rejoin [ "F13cIL" compt ": ^"" F13cI "^""]
+	do rejoin [ "F13cJL" compt ": ^"" F13cJ "^""]
+	do rejoin [ "F13cKL" compt ": ^"" F13cK "^""]
+	do rejoin [ "F13cLL" compt ": ^"" F13cL "^""]
+	do rejoin [ "F13cML" compt ": ^"" F13cM "^""]
+	do rejoin [ "F13cNL" compt ": ^"" F13cN "^""]
+	do rejoin [ "F13cOL" compt ": ^"" F13cO "^""]
+	do rejoin [ "F13cPL" compt ": ^"" F13cP "^""]
+
+
+	compt: compt + 1
+]
+f13-compt: compt - 1
+
+a: read/lines %/C/Users/toto/Desktop/MHDB/f14cG-Sensors.csv
+
+
+compt: 0
+
+regle: [copy F14cA to "£" skip copy F14cB to "£" skip copy F14cC to "£" skip copy F14cD to "£" skip copy F14cE to "£" skip copy F14cF to end]
+
+foreach ee a [
+	ee: replace/all ee "Â" ""
+
+
+	parse ee regle
+
+	if none? F14cA [F14cA: ""]
+	if none? F14cB [F14cB: ""]
+	if none? F14cC [F14cC: ""]
+	if none? F14cD [F14cD: ""]
+	if none? F14cE [F14cE: ""]
+	if none? F14cF [F14cF: ""]
+
+	do rejoin [ "F14cAL" compt ": ^"" F14cA "^""]
+	either compt = 0 [
+		do rejoin [ "F14cBL" compt ": ^"" F14cB "^""]
+	][
+		do rejoin [ "F14cBL" compt ":  " to-binary F14cB ]
+	]
+
+	do rejoin [ "F14cCL" compt ": ^"" F14cC "^""]
+	do rejoin [ "F14cDL" compt ": ^"" F14cD "^""]
+	do rejoin [ "F14cEL" compt ": ^"" F14cE "^""]
+	do rejoin [ "F14cFL" compt ": ^"" F14cF "^""]
+
+
+	compt: compt + 1
+]
+f14-compt: compt - 1
+
+a: read/lines %/C/Users/toto/Desktop/MHDB/f15cI-Measure.csv
+
+
+compt: 0
+
+regle: [copy F15cA to "£" skip copy F15cB to "£" skip copy F15cC to "£" skip copy F15cD to "£" skip copy F15cE to "£" skip copy F15cF to  "£" skip copy F15cG to end]
+
+foreach ee a [
+	ee: replace/all ee "Â" ""
+
+
+	parse ee regle
+
+	if none? F15cA [F15cA: ""]
+	if none? F15cB [F15cB: ""]
+	if none? F15cC [F15cC: ""]
+	if none? F15cD [F15cD: ""]
+	if none? F15cE [F15cE: ""]
+	if none? F15cF [F15cF: ""]
+	if none? F15cG [F15cG: ""]
+
+	do rejoin [ "F15cAL" compt ": ^"" F15cA "^""]
+	either compt = 0 [
+		do rejoin [ "F15cBL" compt ": ^"" F15cB "^""]
+	][
+		do rejoin [ "F15cBL" compt ":  " to-binary F15cB ]
+	]
+
+	do rejoin [ "F15cCL" compt ": ^"" F15cC "^""]
+	do rejoin [ "F15cDL" compt ": ^"" F15cD "^""]
+	do rejoin [ "F15cEL" compt ": ^"" F15cE "^""]
+	do rejoin [ "F15cFL" compt ": ^"" F15cF "^""]
+	do rejoin [ "F15cGL" compt ": ^"" F15cG "^""]
+
+
+	compt: compt + 1
+]
+f15-compt: compt - 1
+
+a: read/lines %/C/Users/toto/Desktop/MHDB/F16-ResearchStudyOnProjectLink.csv
+
+
+compt: 0
+
+regle: [copy F16cA to "£" skip copy F16cB to "£" skip copy F16cC to end]
+foreach ee a [
+	ee: replace/all ee "Â" ""
+
+
+	parse ee regle
+
+	if none? F16cA [F16cA: ""]
+	if none? F16cB [F16cB: ""]
+	if none? F16cc [F16cC: ""]
+
+	do rejoin [ "F16cAL" compt ": ^"" F16cA "^""]
+	either compt = 0 [
+		do rejoin [ "F16cBL" compt ": ^"" F16cB "^""]
+	][
+
+		do rejoin [ "F16cBL" compt ":  " to-binary F16cB ]
+	]
+
+	do rejoin [ "F16cCL" compt ": ^"" F16cC "^""]
+
+
+	compt: compt + 1
+]
+f16-compt: compt - 1
+
+a: read/lines %/C/Users/toto/Desktop/MHDB/f17cH-unit.csv
+
+
+compt: 0
+
+regle: [copy F17cA to "£" skip copy F17cB to end]
+foreach ee a [
+	ee: replace/all ee "Â" ""
+
+
+	parse ee regle
+
+	if none? F17cA [F17cA: ""]
+	if none? F17cB [F17cB: ""]
+
+	do rejoin [ "F17cAL" compt ": ^"" F17cA "^""]
+	either compt = 0 [
+		do rejoin [ "F17cBL" compt ": ^"" F17cB "^""]
+	][
+		do rejoin [ "F17cBL" compt ":  " to-binary F17cB ]
+	]
+
+
+
+	compt: compt + 1
+]
+f17-compt: compt - 1
+
+a: read/lines %/C/Users/toto/Desktop/MHDB/f18-input.csv
+
+
+compt: 0
+
+regle: [copy F18cA to "£" skip copy F18cB to end]
+foreach ee a [
+	ee: replace/all ee "Â" ""
+
+
+	parse ee regle
+
+	if none? F18cA [F18cA: ""]
+	if none? F18cB [F18cB: ""]
+
+	do rejoin [ "F18cAL" compt ": ^"" F18cA "^""]
+	either compt = 0 [
+		do rejoin [ "F18cBL" compt ": ^"" F18cB "^""]
+	][
+		do rejoin [ "F18cBL" compt ":  " to-binary F18cB ]
+	]
+
+
+
+	compt: compt + 1
+]
+f18-compt: compt - 1
+
+a: read/lines %/C/Users/toto/Desktop/MHDB/f19-Stimulus.csv
+
+
+
+compt: 0
+
+regle: [copy F19cA to "£" skip copy F19cB to "£" skip copy F19cC to end]
+foreach ee a [
+	ee: replace/all ee "Â" ""
+
+	parse ee regle
+
+	if none? F19cA [F19cA: ""]
+	if none? F19cB [F19cB: ""]
+	if none? F19cC [F19cC: ""]
+
+	do rejoin [ "F19cAL" compt ": ^"" F19cA "^""]
+	either compt = 0 [
+		do rejoin [ "F19cBL" compt ": ^"" F19cB "^""]
+	][
+		do rejoin [ "F19cBL" compt ":  " to-binary F19cB ]
+	]
+	either compt = 0 [
+		do rejoin [ "F19cCL" compt ": ^"" F19cC "^""]
+	][
+		do rejoin [ "F19cCL" compt ":  " to-binary F19cC ]
+	]
+
+
+	compt: compt + 1
+]
+f19-compt: compt - 1
+
+; triplet RDF
+
+	;Tr1_n  (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr1.csv ""
+	for i 1 f1-compt 1 [
+
+		F1cALn: do join "F1cAL" i
+		F1cBLn: do  join "F1cBL" i
+
+		x: to-string F1cBLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 10 "..."]
+		
+		Tr: rejoin [ F1cALn "," ff "," x  newline ]
+		print Tr
+		WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr1.csv  Tr
+
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr1.csv  FXML
+
+
+	;Tr2_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr2.csv ""
+	for i 1 f1-compt 1 [
+
+		F1cALn: do join "F1cAL" i
+		F1cCLn: do  join "F1cCL" i
+		replace/all F1cCLn " " ""
+		replace/all F1cCL0 " " "_"
+
+		x: to-string F1cCLn
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		Tr: rejoin [ F1cALn  "," x  newline ]
+		print Tr
+		WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr2.csv  Tr
+
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr2.csv  FXML
+
+	;Tr3_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr3.csv ""
+	for i 1 f1-compt 1 [
+
+		F1cALn: do join "F1cAL" i
+		F1cDLn: do  join "F1cDL" i
+		replace/all F1cDLn " " ""
+		replace/all F1cDL0 " " "_"
+
+		
+		x: to-string F1cDLn
+		
+		Tr: rejoin [ F1cALn  "," x  newline ]
+		print Tr
+		WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr3.csv  Tr
+
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr3.csv  FXML
+
+	;Tr4_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr4.csv ""
+	for i 1 f1-compt 1 [
+
+		F1cALn: do join "F1cAL" i
+		F1cELn: do  join "F1cEL" i
+		replace/all F1cELn " " ""
+		replace/all F1cEL0 " " "_"
+
+		
+		x: to-string F1cELn
+		
+		Tr: rejoin [ F1cALn  "," x  newline ]
+			print Tr
+			WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr4.csv  Tr
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr4.csv  FXML
+
+
+	;Tr5_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr5.csv ""
+	for i 1 f1-compt 1 [
+
+		F1cALn: do join "F1cAL" i
+		F1cFLn: do  join "F1cFL" i
+		replace/all F1cFLn " " ""
+		replace/all F1cFL0 " " "_"
+
+		if not empty? F1cFLn [
+
+			foreach ee SplitGCI F1cFLn [
+				ee: replace/all ee " " ""
+		
+		x: to-string ee
+		Tr: rejoin [ F1cALn  "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr5.csv  Tr
+			]
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr5.csv  FXML
+
+
+	;Tr6_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr6.csv ""
+	for i 1 f1-compt 1 [
+
+		F1cALn: do join "F1cAL" i
+		F1cGLn: do  join "F1cGL" i
+		replace/all F1cGLn " " ""
+		replace/all F1cGL0 " " "_"
+
+		if not empty? F1cGLn [
+
+			foreach ee SplitGCI F1cGLn [
+				ee: replace/all ee " " ""
+
+		
+		x: to-string ee
+		
+		Tr: rejoin [ F1cALn  "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr6.csv  Tr
+			]
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr6.csv  FXML
+
+
+	;Tr7_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr7.csv ""
+	for i 1 f1-compt 1 [
+
+		F1cALn: do join "F1cAL" i
+		F1cHLn: do  join "F1cHL" i
+		replace/all F1cHLn " " ""
+		replace/all F1cHL0 " " "_"
+
+		if not empty? F1cHLn [
+
+			foreach ee SplitGCI F1cHLn [
+				ee: replace/all ee " " ""
+
+		
+		x: to-string ee
+		
+		Tr: rejoin [ F1cALn  "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr7.csv  Tr
+			]
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr7.csv  FXML
+
+
+	;Tr8_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr8.csv ""
+	for i 1 f1-compt 1 [
+
+		F1cALn: do join "F1cAL" i
+		F1cILn: do  join "F1cIL" i
+		replace/all F1cILn " " ""
+		replace/all F1cIL0 " " "_"
+
+		if not empty? F1cILn [
+
+			foreach ee SplitGCI F1cILn [
+				ee: replace/all ee " " ""
+
+		
+		x: to-string ee
+		
+		Tr: rejoin [ F1cALn  "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr8.csv  Tr
+			]
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr8.csv  FXML
+
+	;Tr9_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr9.csv ""
+	for i 1 f1-compt 1 [
+
+		F1cALn: do join "F1cAL" i
+		F1cJLn: do  join "F1cJL" i
+		replace/all F1cJLn " " ""
+		replace/all F1cJL0 " " "_"
+
+		if not empty? F1cJLn [
+
+			foreach ee SplitGCI F1cJLn [
+				ee: replace/all ee " " ""
+
+		
+		x: to-string ee
+		
+		Tr: rejoin [ F1cALn  "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr9.csv  Tr
+			]
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr9.csv  FXML
+
+
+	;Tr10_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr10.csv ""
+	for i 1 f1-compt 1 [
+
+		F1cALn: do join "F1cAL" i
+		F1cKLn: do  join "F1cKL" i
+		replace/all F1cKLn " " ""
+		replace/all F1cKL0 " " "_"
+
+		if not empty? F1cKLn [
+
+			foreach ee SplitGCI F1cKLn [
+				ee: replace/all ee " " ""
+
+		
+		x: to-string ee
+		
+		Tr: rejoin [ F1cALn  "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr10.csv  Tr
+			]
+		]
+	]
+
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr10.csv  FXML
+
+
+	;Tr11_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr11.CSV  BXML
+	for i 1 f1-compt 1 [
+
+		F1cALn: do join "F1cAL" i
+		F1cLLn: do  join "F1cLL" i
+		replace/all F1cLLn " " ""
+		replace/all F1cLL0 " " "_"
+
+		if not empty? F1cLLn [
+
+			foreach ee SplitGCI F1cLLn [
+				ee: replace/all ee " " ""
+
+		
+		x: to-string ee
+		
+		Tr: rejoin [ F1cALn  "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr11.csv  Tr 
+			]
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr11.csv  FXML
+
+
+	;Tr12_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr12.CSV  BXML
+	for i 1 f1-compt 1 [
+
+		F1cALn: do join "F1cAL" i
+		F1cMLn: do  join "F1cML" i
+		replace/all F1cMLn " " ""
+		replace/all F1cML0 " " "_"
+
+		if not empty? F1cMLn [
+
+			foreach ee SplitGCI F1cMLn [
+				ee: replace/all ee " " ""
+
+		
+		x: to-string ee
+		
+		Tr: rejoin [ F1cALn  "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr12.csv  Tr 
+			]
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr12.csv  FXML
+
+
+	;Tr13_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr13.CSV  BXML
+	for i 1 f1-compt 1 [
+
+		F1cALn: do join "F1cAL" i
+		F1cNLn: do  join "F1cNL" i
+		replace/all F1cNLn " " ""
+		replace/all F1cNL0 " " "_"
+
+		if not empty? F1cNLn [
+
+			foreach ee SplitGCI F1cNLn [
+				ee: replace/all ee " " ""
+
+		
+		x: to-string ee
+		
+		Tr: rejoin [ F1cALn  "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr13.csv  Tr 
+			]
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr13.csv  FXML
+
+	;Tr14_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr14.CSV  BXML
+	for i 1 f1-compt 1 [
+
+		F1cALn: do join "F1cAL" i
+		F1cPLn: do  join "F1cPL" i
+		replace/all F1cPLn " " ""
+		replace/all F1cPL0 " " "_"
+
+		if not empty? F1cPLn [
+
+			foreach ee SplitGCI F1cPLn [
+				ee: replace/all ee " " ""
+
+		
+		x: to-string ee
+		
+		Tr: rejoin [ F1cALn  "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr14.csv  Tr 
+			]
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr14.csv  FXML
+
+	;Tr15_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr15.CSV  BXML
+	for i 1 f1-compt 1 [
+
+		F1cALn: do join "F1cAL" i
+		F1cOLn: do  join "F1cOL" i
+		replace/all F1cOLn " " ""
+		replace/all F1cOL0 " " "_"
+
+		if not empty? F1cOLn [
+
+			foreach ee SplitGCI F1cOLn [
+				ee: replace/all ee " " ""
+
+		
+		x: to-string ee
+		
+		Tr: rejoin [ F1cALn  "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr15.csv  Tr 
+			]
+		]
+	]
+
+
+
+	;Tr16_n (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr16.txt ""
+	for i 1 f2-compt 1 [
+
+		F2cALn: do join "F2cAL" i
+		F2cBLn: do  join "F2cBL" i
+
+		x: to-string F2cBLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 10 "..."]
+		
+		Tr: rejoin [ F2cALn "," ff "," x  newline ]
+		print Tr
+		WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr16.txt  Tr
+
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr16.csv  FXML
+
+	;Tr17_n (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr17.csv  BXML
+	for i 1 f3-compt 1 [
+
+		F3cALn: do join "F3cAL" i
+		F3cBLn: do  join "F3cBL" i
+
+		x: to-string F3cBLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 10 "..."]
+		
+		Tr: rejoin [ F3cALn "," ff "," x  newline ]
+		print Tr
+		WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr17.csv  Tr
+
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr17.csv  FXML
+
+
+	;Tr18_n (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr18.csv ""
+	for i 1 f4-compt 1 [
+
+		F4cALn: do join "F4cAL" i
+		F4cBLn: do  join "F4cBL" i
+
+		x: to-string F4cBLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+		
+		Tr: rejoin [ F4cALn  "," x  newline ]
+		print Tr
+		WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr18.csv  Tr
+
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr18.csv  FXML
+
+
+	;Tr19_n (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr19.csv ""
+	for i 1 f5-compt 1 [
+
+		F5cALn: do join "F5cAL" i
+		F5cBLn: do  join "F5cBL" i
+
+		x: to-string F5cBLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 10 "..."]
+		
+		Tr: rejoin [ F5cALn "," ff "," x  newline ]
+		print Tr
+		WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr19.csv  Tr
+
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr19.csv  FXML
+
+
+	;Tr20_n (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr20.csv ""
+	for i 1 f6-compt 1 [
+
+		F6cALn: do join "F6cAL" i
+		F6cBLn: do  join "F6cBL" i
+
+		x: to-string F6cBLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 10 "..."]
+		
+		Tr: rejoin [ F6cALn "," ff "," x  newline ]
+		print Tr
+		WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr20.csv  Tr
+
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr20.csv  FXML
+
+
+	;Tr21_n  (type: URL -> URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr21.csv ""
+	for i 1 f8-compt 1 [
+
+		F8cALn: do join "F8cAL" i
+		F8cBLn: do  join "F8cBL" i
+		replace/all F8cBLn " " ""
+		replace/all F8cBL0 " " "_"
+
+		if not empty? F8cBLn [
+
+			
+				ee: replace/all F8cBLn " " ""
+
+		ff: rejoin [debut x 10 "..."]
+		x: to-string ee
+		
+		Tr: rejoin [ F8cALn "," ff "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr21.csv  Tr 
+			
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr21.csv  FXML
+
+
+
+	;Tr22_n (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr22.csv ""
+	for i 1 f9-compt 1 [
+
+		F9cALn: do join "F9cAL" i
+		F9cBLn: do  join "F9cBL" i
+
+		x: to-string F9cBLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 10 "..."]
+		
+		Tr: rejoin [ F9cALn "," ff "," x  newline ]
+		print Tr
+		WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr22.csv  Tr
+
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr22.csv  FXML
+
+
+	;Tr23_n (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr23.csv ""
+	for i 1 f10-compt 1 [
+
+		F10cALn: do join "F10cAL" i
+		F10cBLn: do  join "F10cBL" i
+
+		x: to-string F10cBLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 10 "..."]
+		
+		Tr: rejoin [ F10cALn "," ff "," x  newline ]
+		print Tr
+		WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr23.csv  Tr
+
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr23.csv  FXML
+
+
+	;Tr24_n (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr24.csv ""
+	for i 1 f11-compt 1 [
+
+		F11cALn: do join "F11cAL" i
+		F11cBLn: do  join "F11cBL" i
+
+		x: to-string F11cBLn
+		replace/all x " " "_"
+		replace/all x "^"" "'"
+
+		
+		Tr: rejoin [ F11cALn "," x  newline ]
+		print Tr
+		WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr24.csv  Tr
+
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr24.csv  FXML
+
+
+	;Tr25_n (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr25.csv ""
+	for i 1 f12-compt 1 [
+
+		F12cALn: do join "F12cAL" i
+		F12cBLn: do  join "F12cBL" i
+
+		x: to-string F12cBLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+		
+		Tr: rejoin [ F12cALn  "," x  newline ]
+		print Tr
+		WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr25.csv  Tr
+
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr25.csv  FXML
+
+
+	;Tr26_n (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr26.csv ""
+	for i 1 f17-compt 1 [
+
+		F17cALn: do join "F17cAL" i
+		F17cBLn: do  join "F17cBL" i
+
+		x: to-string F17cBLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+		
+		Tr: rejoin [ F17cALn  "," x  newline ]
+		print Tr
+		WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr26.csv  Tr
+
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr26.csv  FXML
+
+
+	;Tr27_n  (type: URL -> URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr27.csv ""
+	for i 1 f19-compt 1 [
+
+		F19cALn: do join "F19cAL" i
+		F19cBLn: do  join "F19cBL" i
+		replace/all F19cBLn " " ""
+		replace/all F19cBL0 " " "_"
+
+		if not empty? F19cBLn [
+
+		x: to-string F19cBLn
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 10 "..."]
+		
+		Tr: rejoin [ F19cALn "," ff "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr27.csv  Tr 
+			
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr27.csv  FXML
+
+
+	;Tr28_n (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr28.csv ""
+	for i 1 f19-compt 1 [
+
+		F19cALn: do join "F19cAL" i
+		F19cCLn: do  join "F19cCL" i
+
+		x: to-string F19cCLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 10 "..."]
+		
+		Tr: rejoin [ F19cALn "," ff "," x  newline ]
+		print Tr
+		WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr28.csv  Tr
+
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr28.csv  FXML
+
+
+
+	;Tr29_n  (type: URL -> URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr29.csv ""
+	for i 1 f7-compt 1 [
+
+		F7cALn: do join "F7cAL" i
+		F7cBLn: do  join "F7cBL" i
+		replace/all F7cBLn " " ""
+		replace/all F7cBL0 " " "_"
+
+		if not empty? F7cBLn [
+
+		x: to-string F7cBLn
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 10 "..."]
+		
+		Tr: rejoin [ F7cALn "," ff "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr29.csv  Tr 
+			
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr29.csv  FXML
+
+
+	;Tr30_n (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr30.csv ""
+	for i 1 f16-compt 1 [
+
+		F7cALn: do join "F7cAL" i
+		F7cCLn: do  join "F7cCL" i
+
+		x: to-string F7cCLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+		
+		Tr: rejoin [ F7cALn  "," x  newline ]
+			print Tr
+			WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr30.csv  Tr
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr30.csv  FXML
+
+
+	;Tr31_n  (type: URL -> URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr31.csv ""
+	for i 1 f16-compt 1 [
+
+		F16cALn: do join "F16cAL" i
+		F16cBLn: do  join "F16cBL" i
+		replace/all F16cBLn " " ""
+		replace/all F16cBL0 " " "_"
+
+		if not empty? F16cBLn [
+
+		x: to-string F16cBLn
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 10 "..."]
+		
+		Tr: rejoin [ F16cALn "," ff "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr31.csv  Tr 
+			
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr31.csv  FXML
+
+
+
+	;Tr32_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr32.csv ""
+	for i 1 f16-compt 1 [
+
+		F16cALn: do join "F16cAL" i
+		F16cCLn: do  join "F16cCL" i
+		replace/all F16cCLn " " ""
+		replace/all F16cCL0 " " "_"
+
+		if not empty? F16cCLn [
+
+			foreach ee SplitGCI F16cCLn [
+				ee: replace/all ee " " ""
+
+		
+		x: to-string ee
+		
+		Tr: rejoin [ F16cALn  "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr32.csv  Tr 
+			]
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr32.csv  FXML
+
+
+	;Tr33_n  (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr33.csv ""
+	for i 1 f13-compt 1 [
+
+		F13cALn: do join "F13cAL" i
+		F13cBLn: do  join "F13cBL" i
+
+		x: to-string F13cBLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 10 "..."]
+		
+		Tr: rejoin [ F13cALn  "," x  newline ]
+		print Tr
+		WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr33.csv  Tr
+
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr33.csv  FXML
+
+
+	;Tr34_n  (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr34.csv ""
+	for i 1 f13-compt 1 [
+
+		F13cALn: do join "F13cAL" i
+		F13cCLn: do  join "F13cCL" i
+
+		if not empty? F13cCLn [
+
+		x: to-string F13cCLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 10 "..."]
+		
+		Tr: rejoin [ F13cALn "," ff "," x  newline ]
+			print Tr
+			WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr34.csv  Tr
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr34.csv  FXML
+
+
+
+	;Tr35_n  (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr35.csv ""
+	for i 1 f13-compt 1 [
+
+		F13cALn: do join "F13cAL" i
+		F13cDLn: do  join "F13cDL" i
+
+		x: to-string F13cDLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 10 "..."]
+		
+		Tr: rejoin [ F13cALn "," ff "," x  newline ]
+		print Tr
+		WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr35.csv  Tr
+
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr35.csv  FXML
+
+
+
+	;Tr36_n  (type: URL -> URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr36.csv ""
+	for i 1 f13-compt 1 [
+
+		F13cALn: do join "F13cAL" i
+		F13cELn: do  join "F13cEL" i
+		replace/all F13cELn " " ""
+		replace/all F13cEL0 " " "_"
+
+		if not empty? F13cELn [
+
+		x: to-string F13ceLn
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 10 "..."]
+		
+		Tr: rejoin [ F13cALn "," ff "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr36.csv  Tr 
+			
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr36.csv  FXML
+
+
+
+	;Tr37_n  (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr37.csv ""
+	for i 1 f13-compt 1 [
+
+		F13cALn: do join "F13cAL" i
+		F13cFLn: do  join "F13cFL" i
+
+		if not empty? F13cFLn [
+
+		x: to-string F13cFLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 15 "..."]
+		
+		Tr: rejoin [ F13cALn "," ff "," x  newline ]
+			print Tr
+			WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr37.csv  Tr
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr37.csv  FXML
+
+
+
+	;Tr38_n  (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr38.csv ""
+	for i 1 f13-compt 1 [
+
+		F13cALn: do join "F13cAL" i
+		F13cGLn: do  join "F13cGL" i
+
+		if not empty? F13cGLn [
+
+		x: to-string F13cGLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+		
+		Tr: rejoin [ F13cALn  "," x  newline ]
+			print Tr
+			WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr38.csv  Tr
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr38.csv  FXML
+
+
+	;Tr39_n  (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr39.csv ""
+	for i 1 f13-compt 1 [
+
+		F13cALn: do join "F13cAL" i
+		F13cHLn: do  join "F13cHL" i
+
+		if not empty? F13cHLn [
+
+		x: to-string F13cHLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+		
+		Tr: rejoin [ F13cALn "," x  newline ]
+			print Tr
+			WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr39.csv  Tr
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr39.csv  FXML
+
+
+	;Tr40_n  (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr40.csv ""
+	for i 1 f13-compt 1 [
+
+		F13cALn: do join "F13cAL" i
+		F13cILn: do  join "F13cIL" i
+
+		if not empty? F13cILn [
+
+		x: to-string F13cILn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 15 "..."]
+		
+		Tr: rejoin [ F13cALn  "," x  newline ]
+			print Tr
+			WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr40.csv  Tr
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr40.csv  FXML
+	
+
+	;Tr41_n  (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr41.csv ""
+	for i 1 f13-compt 1 [
+
+		F13cALn: do join "F13cAL" i
+		F13cJLn: do  join "F13cJL" i
+
+		if not empty? F13cJLn [
+
+		x: to-string F13cJLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 15 "..."]
+		
+		Tr: rejoin [ F13cALn  "," x  newline ]
+			print Tr
+			WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr41.csv  Tr
+		]
+	]	
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr41.csv  FXML
+
+
+	;Tr42_n  (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr42.csv ""
+	for i 1 f13-compt 1 [
+
+		F13cALn: do join "F13cAL" i
+		F13cKLn: do  join "F13cKL" i
+
+		if not empty? F13cKLn [
+
+		x: to-string F13cKLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 15 "..."]
+		
+		Tr: rejoin [ F13cALn  "," x  newline ]
+			print Tr
+			WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr42.csv  Tr
+		]
+	]	
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr42.csv  FXML
+
+
+
+	;Tr43_n  (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr43.csv ""
+	for i 1 f13-compt 1 [
+
+		F13cALn: do join "F13cAL" i
+		F13cLLn: do  join "F13cLL" i
+
+		if not empty? F13cLLn [
+
+		x: to-string F13cLLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 15 "..."]
+		
+		Tr: rejoin [ F13cALn  "," x  newline ]
+			print Tr
+			WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr43.csv  Tr
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr43.csv  FXML
+	
+
+	;Tr44_n  (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr44.csv ""
+	for i 1 f13-compt 1 [
+
+		F13cALn: do join "F13cAL" i
+		F13cMLn: do  join "F13cML" i
+
+		if not empty? F13cMLn [
+
+		x: to-string F13cMLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+		
+		Tr: rejoin [ F13cALn  "," x  newline ]
+			print Tr
+			WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr44.csv  Tr
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr44.csv  FXML	
+
+
+	;Tr45_n  (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr45.csv ""
+	for i 1 f13-compt 1 [
+
+		F13cALn: do join "F13cAL" i
+		F13cNLn: do  join "F13cNL" i
+
+		if not empty? F13cNLn [
+
+		x: to-string F13cNLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 10 "..."]
+		
+		Tr: rejoin [ F13cALn "," ff "," x  newline ]
+			print Tr
+			WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr45.csv  Tr
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr45.csv  FXML		
+
+
+	;Tr46_n  (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr46.csv ""
+	for i 1 f13-compt 1 [
+
+		F13cALn: do join "F13cAL" i
+		F13cOLn: do  join "F13cOL" i
+
+		if not empty? F13cOLn [
+
+		x: to-string F13c0Ln
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 10 "..."]
+		
+		Tr: rejoin [ F13cALn "," ff "," x  newline ]
+			print Tr
+			WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr46.csv  Tr
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr46.csv  FXML	
+	
+
+	;Tr47_n  (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr47.csv ""
+	for i 1 f13-compt 1 [
+
+		F13cALn: do join "F13cAL" i
+		F13cPLn: do  join "F13cPL" i
+
+		if not empty? F13cPLn [
+
+		x: to-string F13cPLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		ff: rejoin [debut x 10 "..."]
+		
+		Tr: rejoin [ F13cALn "," ff "," x  newline ]
+			print Tr
+			WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr47.csv  Tr
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr47.csv  FXML	
+	
+
+	;Tr48_n  (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr48.csv ""
+	for i 1 f14-compt 1 [
+
+		F14cALn: do join "F14cAL" i
+		F14cBLn: do  join "F14cBL" i
+
+		if not empty? F14cBLn [
+
+		x: to-string F14cBLn
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+		
+		Tr: rejoin [ F14cALn  "," x  newline ]
+			print Tr
+			WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr48.csv  Tr
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr48.csv  FXML	
+	
+
+	;Tr50_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr50.csv ""
+	for i 1 f14-compt 1 [
+
+		F14cALn: do join "F14cAL" i
+		F14cDLn: do  join "F14cDL" i
+		replace/all F14cDLn " " ""
+		replace/all F14cDL0 " " "_"
+
+		if not empty? F14cDLn [
+
+			foreach ee SplitGCI F14cDLn [
+				ee: replace/all ee " " ""
+
+		
+		x: to-string ee
+		
+		Tr: rejoin [ F14cALn  ",Index_" x  newline ]
+
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr50.csv  Tr 
+			]
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr50.csv  FXML
+
+
+	;Tr51_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr51.csv ""
+	for i 1 f14-compt 1 [
+
+		F14cALn: do join "F14cAL" i
+		F14cELn: do  join "F14cEL" i
+		replace/all F14cELn " " ""
+		replace/all F14cEL0 " " "_"
+
+		if not empty? F14cELn [
+
+			foreach ee SplitGCI F14cELn [
+				ee: replace/all ee " " ""
+
+		
+		x: to-string ee
+		
+		Tr: rejoin [ F14cALn  ",Index_" x  newline ]
+
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr51.csv  Tr 
+			]
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr51.csv  FXML
+
+	;Tr52_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr52.csv ""
+	for i 1 f14-compt 1 [
+
+		F14cALn: do join "F14cAL" i
+		F14cFLn: do  join "F14cFL" i
+		replace/all F14cFLn " " ""
+		replace/all F14cFL0 " " "_"
+
+		if not empty? F14cFLn [
+
+			foreach ee SplitGCI F14cFLn [
+				ee: replace/all ee " " ""
+
+		
+		x: to-string ee
+		
+		Tr: rejoin [ F14cALn  "," x  newline ]
+
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr52.csv  Tr 
+			]
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr52.csv  FXML
+
+	;Tr53_n  (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr53.csv ""
+	for i 1 f15-compt 1 [
+
+		F15cALn: do join "F15cAL" i
+		F15cBLn: do  join "F15cBL" i
+
+		if not empty? F15cBLn [
+
+		x: to-string F15cBLn
+		replace/all x "/" "_"
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+		
+		Tr: rejoin [ F15cALn  "," x  newline ]
+			print Tr
+			WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr53.csv  Tr
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr53.csv  FXML
+
+	;Tr54_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr54.csv ""
+	for i 1 f15-compt 1 [
+
+		F15cALn: do join "F15cAL" i
+		F15cCLn: do  join "F15cCL" i
+		replace/all F15cCLn " " ""
+		replace/all F15cCL0 " " "_"
+
+		if not empty? F15cCLn [
+
+			foreach ee SplitGCI F15cCLn [
+				ee: replace/all ee " " ""
+
+		
+		x: to-string ee
+		
+		Tr: rejoin [ F15cALn  "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr54.csv  Tr 
+			]
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr54.csv  FXML
+
+
+	;Tr55_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr55.csv ""
+	for i 1 f15-compt 1 [
+
+		F15cALn: do join "F15cAL" i
+		F15cDLn: do  join "F15cDL" i
+		replace/all F15cDLn " " ""
+		replace/all F15cDL0 " " "_"
+
+		if not empty? F15cDLn [
+
+			foreach ee SplitGCI F15cDLn [
+				ee: replace/all ee " " ""
+
+		
+		x: to-string ee
+		
+		Tr: rejoin [ F15cALn  "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr55.csv  Tr 
+			]
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr55.csv  FXML
+
+
+	;Tr56_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr56.csv ""
+	for i 1 f15-compt 1 [
+
+		F15cALn: do join "F15cAL" i
+		F15cELn: do  join "F15cEL" i
+		replace/all F15cELn " " ""
+		replace/all F15cEL0 " " "_"
+
+		if not empty? F15cELn [
+
+			foreach ee SplitGCI F15cELn [
+				ee: replace/all ee " " ""
+
+		
+		x: to-string ee
+		
+		Tr: rejoin [ F15cALn  "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr56.csv  Tr 
+			]
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr56.csv  FXML
+
+
+	;Tr57_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr57.csv ""
+	for i 1 f15-compt 1 [
+
+		F15cALn: do join "F15cAL" i
+		F15cFLn: do  join "F15cFL" i
+		replace/all F15cFLn " " ""
+		replace/all F15cFL0 " " "_"
+
+		if not empty? F15cFLn [
+
+			foreach ee SplitGCI F15cFLn [
+				ee: replace/all ee " " ""
+
+		
+		x: to-string ee
+		
+		Tr: rejoin [ F15cALn  "," x  newline ]
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr57.csv  Tr 
+			]
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr57.csv  FXML
+
+
+	;Tr58_n  (type: URL -> URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr58.csv ""
+	for i 1 f15-compt 1 [
+
+		F15cALn: do join "F15cAL" i
+		F15cGLn: do  join "F15cGL" i
+		replace/all F15cGLn " " ""
+		replace/all F15cGL0 " " "_"
+
+		if not empty? F15cGLn [
+
+			
+				ee: replace/all F8cBLn " " ""
+
+		x: ee
+		ff: rejoin [debut x 10 "..."]
+		x: to-string ee
+		
+		Tr: rejoin [ F15cALn "," ff "," x  newline ]
+
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr58.csv  Tr 
+			
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr58.csv  FXML
+
+
+	;Tr59_n  (type: littéral)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr59.csv ""
+	for i 1 f18-compt 1 [
+
+		F18cALn: do join "F18cAL" i
+		F18cBLn: do  join "F18cBL" i
+
+		x: to-string F18cBLn
+		replace/all x "/" "_"
+		replace/all x " " "_"
+		replace/all x "," " "
+		replace/all x "^"" "'"
+
+		
+		Tr: rejoin [ F18cALn "," x  newline ]
+		print Tr
+		WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr59.csv  Tr
+
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr59.csv  FXML
+
+
+	;Tr60_n  (type: URI)
+
+	WRITE %/C/Users/toto/Desktop/MHDB/Tr60.csv ""
+	for i 1 f14-compt 1 [
+
+		F14cELn: do join "F14cEL" i
+		F18cALn: do  join "F18cAL" i
+		replace/all F18cALn " " ""
+		replace/all F18cAL0 " " "_"
+
+		if not empty? F14cELn [
+
+			foreach ee SplitGCI F18cALn[
+				ee: replace/all ee " " ""
+
+		
+		x: to-string ee
+		
+		Tr: rejoin [ F14cELn  "," x  newline ]
+
+				print Tr
+				WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr60.csv  Tr 
+			]
+		]
+	]
+	WRITE/APPEND %/C/Users/toto/Desktop/MHDB/Tr60.csv  FXML

@@ -1,0 +1,40 @@
+1£Simon_Fra...£Simon_Fraser_University
+2£INSERM...£INSERM
+3£National_...£National_Institute_of_Information_and_Communications_Technology _and_Osaka_University
+4£MP_Instit...£MP_Institute_for_Empirical_Aesthetics
+5£MP_Instit...£MP_Institute_for_Empirical_Aesthetics
+7£Universit...£University_of_Southern_California _Los_Angeles
+8£Stanford_...£Stanford_University
+9£Universit...£University_in_Bergen_
+10£UCSD...£UCSD
+11£MP_Instit...£MP_Institute_for_Empirical_Aesthetics
+12£Oslo_Univ...£Oslo_University
+13£Babes-Bol...£Babes-Bolyai_University
+14£Harvard_M...£Harvard_Medical_School
+15£Chile_Uni...£Chile_University
+16£Nara_Univ...£Nara_University_of_Education_
+18£Hanover_U...£Hanover_University
+19£Innsbruck...£Innsbruck_University
+20£Vanderbil...£Vanderbilt_University
+21£Universit...£University_of_California _Berkeley
+22£Universit...£University_of_Pisa
+23£National_...£National_Institute_of_Information_and_Communications_Technology _and_Osaka_University
+24£Universit...£University_of_Maryland _Baltimore
+25£INSERM...£INSERM
+26£INSERM...£INSERM
+27£INSERM...£INSERM
+28£Keele_Uni...£Keele_University
+29£Universit...£University_in_Bergen_
+30£MP_Instit...£MP_Institute_for_Empirical_Aesthetics
+31£Universit...£University_of_Toronto
+32£Vanderbil...£Vanderbilt_University
+33£Institute...£Institute_of_Psychology _Karl-Franzens-Universit√§t_Graz
+34£Universit...£University_of_Ottawa _Ottawa _Ontario _Canada_K1N_6N5.
+35£Chiba_Uni...£Chiba_University _Japan
+36£INSERM...£INSERM
+37£Wesleyan_...£Wesleyan_University
+38£Universit...£University_of_Vienna
+39£Universit...£University_of_Vienna
+40£MP_Instit...£MP_Institute_for_Empirical_Aesthetics
+41£Warwick_B...£Warwick_Business_School
+42£Kyushu_Un...£Kyushu_University;_Fukuoka _Japan

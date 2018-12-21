@@ -1,1 +1,6 @@
-hi
+description process: french process descriptio
+new.ttl: final TURTTLE file (injected in graphDB)
+
+rebol-2.txt: gerating TURTTLE script despite of scripts.ods combination
+
+1LA...  to 28LA ... : CVS like used by rebol script (; replaced by £ to keep able usine of ; into subject & object RDF text)

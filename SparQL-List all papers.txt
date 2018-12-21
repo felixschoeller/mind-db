@@ -1,0 +1,221 @@
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX family: <http://examples.ontotext.com/family#>
+select ("paper" as ?z) ?objet where { 
+    {select (?s as ?sujet) where { 
+            ?s rdf:type family:F1cBL0 }
+    }
+	?sujet dc:description ?objet .
+} 
+
+------------------------------------------------
+	z	objet
+1	
+paper
+
+WElectric: that gave me goosebumps, did you feel it too?
+
+2	
+paper
+
+Aesthetic Chills: Knowledge-Acquisition, Meaning-Making, and Aesthetic Emotions.
+
+3	
+paper
+
+Two types of peak emotional responses to music: The psychophysiology of chills and tears.
+
+4	
+paper
+
+Tears Falling on Goosebumps: Co-occurrence of Emotional Lacrimation and Emotional Piloerection Indicates a Psychophysiological Climax in Emotional Arousal
+
+5	
+paper
+
+The emotional power of poetry: neural circuitry, psychophysiology and compositional principles.
+
+6	
+paper
+
+Exploring the social aspects of goose bumps and their role in awe and envy
+
+7	
+paper
+
+Brain connectivity reflects human aesthetic responses to music.
+
+8	
+paper
+
+A flexible skin piloerection monitoring sensor.
+
+9	
+paper
+
+Effects of Aesthetic Chills on a Cardiac Signature of Emotionality.
+
+10	
+paper
+
+Emotional and aesthetic antecedents and consequences of music-induced thrills.
+
+11	
+paper
+
+Towards a Psychological Construct of Being Moved
+
+12	
+paper
+
+Music chills: The eye pupil as a mirror to music's soul.
+
+13	
+paper
+
+Emotions induced by operatic music: Psychophysiological effects of music, plot, and acting: A scientist??s tribute to Maria Callas
+
+14	
+paper
+
+Intensely pleasurable responses to music correlate with activity in brain regions implicated in reward and emotion
+
+15	
+paper
+
+Liquid sight, thing?êlike words, and the precipitation of knowledge substances in Cuban espiritismo
+
+16	
+paper
+
+Chill-inducing music enhances altruism in humans
+
+17	
+paper
+
+Thrills in response to music and other stimuli
+
+18	
+paper
+
+Chills As an Indicator of Individual Emotional Peaks
+
+19	
+paper
+
+Physiological and Musico-Acoustic Correlates of the Chill Response
+
+20	
+paper
+
+Psychoacoustics of a chilling sound
+
+21	
+paper
+
+The chills as a psychological construct: content universe, factor structure, affective composition, elicitors, trait antecedents, and consequences.
+
+22	
+paper
+
+Psychological stress and body temperature changes in humans
+
+23	
+paper
+
+[Music-induced chills as a strong emotional experience].
+
+24	
+paper
+
+Aesthetic Chills as a Universal Marker of Openness to Experience
+
+25	
+paper
+
+The Shivers of Knowledge
+
+26	
+paper
+
+Dynamics of the knowledge instinct: Effects of incoherence on the cognitive system
+
+27	
+paper
+
+Psychology of aesthetic chills
+
+28	
+paper
+
+Music Structure and Emotional Response: Some Empirical Findings
+
+29	
+paper
+
+Effects of Aesthetic Chills on a Cardiac Signature of Emotionality
+
+30	
+paper
+
+Art-elicited chills indicate states of being moved.
+
+31	
+paper
+
+Anatomically distinct dopamine release during anticipation and experience of peak emotion to music
+
+32	
+paper
+
+The Neural Correlates of Aversive Auditory Stimulation
+
+33	
+paper
+
+Physiological correlates and emotional specificity of human piloerection
+
+34	
+paper
+
+Shivering thermogenesis in humans
+
+35	
+paper
+
+Image-based measurement of changes to skin texture using piloerection for emotion estimation
+
+36	
+paper
+
+Knowledge, curiosity, and aesthetic chills.
+
+37	
+paper
+
+Thrills, chills, frissons, and skin orgasms: toward an integrative model of transcendent psychophysiological experiences in music
+
+38	
+paper
+
+top-down and bottom-up processes in Art Perception
+
+39	
+paper
+
+What do chills actually portend?
+
+40	
+paper
+
+ Perceptual Pleasure and the Brain: A novel theory explains why the brain craves information and seeks it through the senses 
+
+41	
+paper
+
+The Under-Appreciated Drive for Sense-Making
+
+42	
+paper
+
+Psychogenic fever: how psychological stress affects body temperature in the clinical population

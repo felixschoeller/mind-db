@@ -1,0 +1,34 @@
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+select ?sensors where { 
+	?x ?p <http://examples.ontotext.com/family#F12cBL0> .
+    ?x dc:description ?sensors .
+} 
+
+------------------------------------------
+Showing results from 1 to 8 of 8. Query took 0.1s, moments ago.
+
+Filter query results
+sensors
+1	
+survey
+
+2	
+dictator game
+
+3	
+observations
+
+4	
+10points survey
+
+5	
+5points survey
+
+6	
+3points survey
+
+7	
+Acoustic analysis software
+
+8	
+Linguistic analysis

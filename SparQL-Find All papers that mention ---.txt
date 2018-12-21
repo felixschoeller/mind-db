@@ -1,0 +1,154 @@
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX family: <http://examples.ontotext.com/family#>
+select ?s  ?o  where { 
+    {  ?s dc:description ?o 
+        FILTER (regex( ?o, "Psycho"))} union {?s ?p family:F13cCL0}
+} 
+
+----------------------------------
+Showing results from 1 to 48 of 48. Query took 0.1s, minutes ago.
+
+Filter query results
+s	o
+1	
+http://www.mhdb.org/object#F1cAL4	
+Tears Falling on Goosebumps: Co-occurrence of Emotional Lacrimation and Emotional Piloerection Indicates a Psychophysiological Climax in Emotional Arousal
+
+2	
+http://www.mhdb.org/object#F1cAL11	
+Towards a Psychological Construct of Being Moved
+
+3	
+http://www.mhdb.org/object#F1cAL13	
+Emotions induced by operatic music: Psychophysiological effects of music, plot, and acting: A scientist??s tribute to Maria Callas
+
+4	
+http://www.mhdb.org/object#F1cAL20	
+Psychoacoustics of a chilling sound
+
+5	
+http://www.mhdb.org/object#F1cAL22	
+Psychological stress and body temperature changes in humans
+
+6	
+http://www.mhdb.org/object#F1cAL27	
+Psychology of aesthetic chills
+
+7	
+http://www.mhdb.org/object#F1cAL42	
+Psychogenic fever: how psychological stress affects body temperature in the clinical population
+
+8	
+http://www.mhdb.org/object#F13cAL5	
+Psychology
+
+9	
+http://www.mhdb.org/object#F13cAL6	
+Psychology
+
+10	
+http://www.mhdb.org/object#F13cAL9	
+Psychophysics
+
+11	
+http://www.mhdb.org/object#F13cAL13	
+Psychology
+
+12	
+http://www.mhdb.org/object#F13cAL14	
+Personality Psychology
+
+13	
+http://www.mhdb.org/object#F13cAL18	
+Institute of Psychology, Karl-Franzens-Universität Graz
+
+14	
+http://www.mhdb.org/object#F13cAL19	
+Psychology
+
+15	
+http://www.mhdb.org/object#F13cAL20	
+Psychology
+
+16	
+http://www.mhdb.org/object#F13cAL21	
+Psychology
+
+17	
+http://www.mhdb.org/object#F13cAL23	
+Psychology
+
+18	
+http://www.mhdb.org/object#F13cAL27	
+Psychology
+
+19	
+http://www.mhdb.org/object#F13cAL28	
+Psychology
+
+20	
+http://www.mhdb.org/object#F13cAL36	
+Psychology
+
+21	
+http://www.mhdb.org/object#F13cAL37	
+Psychology
+
+22	
+http://www.mhdb.org/object#F13cAL38	
+Psychology
+
+23	
+http://www.mhdb.org/object#F13cAL41	
+Psychology
+
+24	
+http://www.mhdb.org/object#F13cAL3	
+25	
+http://www.mhdb.org/object#F13cAL4	
+26	
+http://www.mhdb.org/object#F13cAL5	
+27	
+http://www.mhdb.org/object#F13cAL6	
+28	
+http://www.mhdb.org/object#F13cAL7	
+29	
+http://www.mhdb.org/object#F13cAL9	
+30	
+http://www.mhdb.org/object#F13cAL10	
+31	
+http://www.mhdb.org/object#F13cAL11	
+32	
+http://www.mhdb.org/object#F13cAL21	
+33	
+http://www.mhdb.org/object#F13cAL22	
+34	
+http://www.mhdb.org/object#F13cAL23	
+35	
+http://www.mhdb.org/object#F13cAL24	
+36	
+http://www.mhdb.org/object#F13cAL25	
+37	
+http://www.mhdb.org/object#F13cAL26	
+38	
+http://www.mhdb.org/object#F13cAL27	
+39	
+http://www.mhdb.org/object#F13cAL29	
+40	
+http://www.mhdb.org/object#F13cAL30	
+41	
+http://www.mhdb.org/object#F13cAL31	
+42	
+http://www.mhdb.org/object#F13cAL33	
+43	
+http://www.mhdb.org/object#F13cAL34	
+44	
+http://www.mhdb.org/object#F13cAL35	
+45	
+http://www.mhdb.org/object#F13cAL40	
+46	
+http://www.mhdb.org/object#F13cAL42	
+47	
+http://www.mhdb.org/object#F13cAL43	
+48	
+http://www.mhdb.org/object#F13cAL44	

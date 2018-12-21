@@ -1,0 +1,76 @@
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+select ?claims where { 
+	?x ?p <http://examples.ontotext.com/family#F10cBL0> .
+    ?x dc:description ?claims .
+} 
+
+---------------------------------------
+Showing results from 1 to 22 of 22. Query took 0.1s, moments ago.
+
+Filter query results
+claims
+1	
+Awe is healthy, both physically and mentally.
+
+2	
+Incoherence inhibits chills, incoherence makes chills experience less pleasurable, chills correspond a satisfaction of curiosity
+
+3	
+displays of prosocial behavior play a crucial role in the elicitation of tears and goosebumps
+
+4	
+recited poetry can act as a powerful stimulus for eliciting peak emotional responses. chills and objectively measurable goosebumps that engage the primary reward circuitry. the distribution of chills across the trajectory of poems provides insight into compositional principles of poetry.
+
+5	
+goose bumps have an important connection with social stimuli and the emotion of awe
+
+6	
+white matter connectivity between sensory processing areas in the superior temporal gyrus and emotional and social processing areas in the insula and medial prefrontal cortex explains individual differences in reward sensitivity to music.
+
+7	
+The possibility to modulate ECG amplitude signatures via stimulation with emotionally significant music pieces and film scenes opens up new perspectives for the use of emotional peak experiences in the therapy of disorders characterized by flattened emotionality, such as depression or schizoid personality disorder.
+
+8	
+Thrills may often accompany profound aesthetic experiences and provide their physiological underpinning, yet themselves be of limited psychological significance.
+
+9	
+music chills can be visible in the moment-to-moment changes in the size of pupillary responses and that a neuromodulatory role of the central norepinephrine system is thereby implicated in this phenomenon
+
+10	
+multiple musical and dramatic means involved in operatic performance specifically contribute to the genesis of music-induced emotions and their physiological correlates
+
+11	
+ ??chill-inducing?ù music may promote altruistic behavior that extends beyond the bounds of kin selection or reciprocal altruism
+
+12	
+Naloxone inhibits chills
+
+13	
+Chills (positive and negative) correspond to mechanism of approach and avoidance
+
+14	
+Chills are universal. Chills correspond to a marker of the personality Openness to Experience
+
+15	
+Chills correspond to a satisfaction of the vital need for cognition
+
+16	
+incoherence inhibits chills
+
+17	
+intense pleasure in response to music can lead to dopamine release in the striatal system
+
+18	
+emotional piloerection represents a valuable indicator of the state of being moved or touched.
+
+19	
+considerable research is still needed to clearly identify the neuroanatomical structures and circuits that initiate and modulate shivering and drives the shivering patterns (continuous and burst shivering).
+
+20	
+How exactly do chills, aesthetic emotions, and even more broadly the knowledge instinct, tie to schema and predictions themselves? More specifically, would chills actually coincide with a ??change function?ù/??adaptation?ù or a schema confirmation ?? would these be different?
+
+21	
+The mechanism for psychogenic fever is not yet fully understood. Past fearful experiences induce conditioned hyperthermia to the fear context
+
+22	
+chills and tears are two distinct emotions

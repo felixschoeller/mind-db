@@ -1,0 +1,17 @@
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX family: <http://examples.ontotext.com/family#>
+select (count(?sujet) as ?count) where { 
+    {select (?s as ?sujet) where { 
+            ?s rdf:type family:F14cBL0 }
+    }
+	?sujet dc:description ?objet .
+} 
+
+-----------------------------------------
+Showing results from 1 to 1 of 1. Query took 0.1s, moments ago.
+
+Filter query results
+count
+1	
+"44"^^xsd:integer

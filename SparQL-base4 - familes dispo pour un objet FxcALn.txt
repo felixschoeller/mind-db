@@ -1,0 +1,22 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+select ?o where { 
+	<http://www.mhdb.org/object#F13cAL16> rdf:type  ?o .
+} limit 100 
+
+
+-------------------------
+
+Showing results from 1 to 5 of 5. Query took 0.1s, minutes ago.
+
+Filter query results
+o
+1	
+family:F13cBL0
+2	
+family:F13cDL0
+3	
+family:F13cFL0
+4	
+family:F13cGL0
+5	
+family:URL

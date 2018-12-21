@@ -1,0 +1,58 @@
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+select ?sensors where { 
+	?x ?p <http://examples.ontotext.com/family#F11cBL0> .
+    ?x dc:description ?sensors .
+} 
+
+-----------------------------------
+Showing results from 1 to 16 of 16. Query took 0.1s, moments ago.
+
+Filter query results
+sensors
+1	
+VR
+
+2	
+Film
+
+3	
+Music 
+
+4	
+poetry
+
+5	
+dance
+
+6	
+Music
+
+7	
+literature
+
+8	
+Life events
+
+9	
+opera
+
+10	
+Rituals
+
+11	
+University Exam
+
+12	
+physics
+
+13	
+maths
+
+14	
+paintings
+
+15	
+Sound
+
+16	
+science

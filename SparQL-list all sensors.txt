@@ -1,0 +1,142 @@
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+select ?sensors where { 
+	?x ?p <http://examples.ontotext.com/family#F14cBL0> .
+    ?x dc:description ?sensors .
+} 
+
+--------------------------------------------
+Showing results from 1 to 44 of 44. Query took 0.1s, moments ago.
+
+Filter query results
+sensors
+1	
+PPG sensor
+
+2	
+Force sensor
+
+3	
+Piezoelectric sensors
+
+4	
+EDA sensor/GSR sensor
+
+5	
+EEG
+
+6	
+Accelerometer
+
+7	
+Microphone
+
+8	
+optical sensors
+
+9	
+camera
+
+10	
+pressure sensor
+
+11	
+spring actuator
+
+12	
+touch screen sensor
+
+13	
+Altimeter
+
+14	
+Magnetometer
+
+15	
+Gyroscope
+
+16	
+GPS
+
+17	
+Kinect
+
+18	
+motion sensor
+
+19	
+pedometer
+
+20	
+infrared thermophiles
+
+21	
+sound sensors
+
+22	
+vibration sensor
+
+23	
+ECG
+
+24	
+biosensors
+
+25	
+android sensor framework
+
+26	
+bluetooth
+
+27	
+electromyograph/EMG
+
+28	
+moisture sensor
+
+29	
+pulsewave sensor
+
+30	
+electroglottography/EGG
+
+31	
+strain sensor
+
+32	
+electrogastrography
+
+33	
+capacitive sensors/capacitance sensors
+
+34	
+proximity sensor
+
+35	
+Respiratory Inductance Plethysmography sensor
+
+36	
+three-axis accelerometer
+
+37	
+single-axis accelerometer
+
+38	
+Electrogastrogram/EGG
+
+39	
+Stretch sensitive sensors
+
+40	
+Survey
+
+41	
+Magnetic Resoanance Imaging 
+
+42	
+eye tracking
+
+43	
+thermometer
+
+44	
+mercury sphyngomanometer

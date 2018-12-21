@@ -1,0 +1,6 @@
+delete
+{?term ?p ?o}
+where
+{
+    ?term ?p ?o
+}

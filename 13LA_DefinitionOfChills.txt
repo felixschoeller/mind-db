@@ -1,8 +1,0 @@
-1£a_sudden_...£a_sudden_chill_or_shudder_accompanied_by_goosebumps
-2£Muscle_tr...£Muscle_tremor_dissipating_heat_unrelated_to_changes_in_temperature
-3£goose_bum...£goose_bumps_or_shivers
-4£emotional...£emotional_piloerection_(i.e. _goosebumps)
-5£chills_an...£chills_and_piloerection_(goosebumps)
-10£a_spreadi...£a_spreading_shiver_down_the_spine _a_tingling_on_the_back_of
-13£physio:_f...£physio:_faster_heart_rate _but_slower_respiration_rate_and_reduced_skin_conductance.
-17£A_thrill_...£A_thrill_is_'a_subtle_nervous_tremor_caused_by_intense_emotion_or_excitement_(as_pleasure _fear etc.) _producing_a_slight_shudder_or_tingling_throughthe_body'

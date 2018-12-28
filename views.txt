@@ -1,25 +1,7 @@
-CREATE VIEW F1cB-F13cB AS
-SELECT LA_Papers.Champ2, LA_ChillsPeople_Discipline.Champ2, LA_Papers.Champ3
-FROM LA_Papers 
-INNER JOIN LA_ChillsPeople_Discipline ON LA_Papers.ID = LA_ChillsPeople_Discipline.ID;
 
-CREATE VIEW HM_papers_with sensors AS
-SELECT DISTINCT LA_Papers.Champ3, Count(LA_sensor.Champ2) AS CompteDeChamp2
-FROM LA_Papers 
-INNER JOIN LA_sensor ON LA_Papers.ID = LA_sensor.Champ1
-GROUP BY LA_Papers.Champ3;
-
-
-CREATE VIEW HM_papers_with_sensors AS
-SELECT DISTINCT Count(LA_sensor.Champ2) AS expr1
-FROM LA_sensor 
-INNER JOIN LA_Papers ON LA_sensor.Champ1 = LA_Papers.ID;
-
-
-CREATE VIEW HM_teams AS
-SELECT Count([Champ3]) AS Expr1
-FROM LA_ChillsPeople_Lab;
-
+CREATE VIEW LA_Papers AS
+SELECT Tr1.[ID], Tr1.[Champ2], Tr1.[Champ3]
+FROM Tr1;
 
 CREATE VIEW LA_application_index AS
 SELECT DISTINCT Tr8.Champ1, Tr54.Champ2
@@ -31,13 +13,6 @@ CREATE VIEW LA_BrainAreas AS
 SELECT DISTINCT Tr13.Champ1, Tr22.Champ2, Tr22.Champ3
 FROM Tr13 
 INNER JOIN Tr22 ON Tr13.Champ2 = Tr22.Champ1;
-
-
-CREATE VIEW LA_chills_lab_and_papers AS
-SELECT LA_ChillsPeople_Lab.Champ3, LA_Papers.Champ3
-FROM LA_ChillsPeople_Lab 
-INNER JOIN LA_Papers ON LA_ChillsPeople_Lab.Champ1 = LA_Papers.ID
-ORDER BY LA_ChillsPeople_Lab.Champ3;
 
 
 CREATE VIEW LA_ChillsPeople_Affiliate1 AS
@@ -125,13 +100,6 @@ FROM Tr8
 INNER JOIN Tr58 ON Tr8.Champ2 = Tr58.Champ1;
 
 
-CREATE VIEW LA_for_stimulusCategory-music_andsensor-ecg AS
-SELECT LA_Papers.Champ3
-FROM (LA_Papers INNER JOIN LA_StimulusCategory ON LA_Papers.ID = LA_StimulusCategory.Champ1) 
-INNER JOIN LA_sensor ON LA_Papers.ID = LA_sensor.Champ1
-WHERE (((LA_StimulusCategory.Champ2)="music") AND ((LA_sensor.Champ2)="ECG"));
-
-
 CREATE VIEW LA_Inference AS
 SELECT DISTINCT Tr11.Champ1, Tr17.Champ2, Tr17.Champ3
 FROM Tr11 
@@ -156,13 +124,6 @@ FROM Tr8
 INNER JOIN Tr53 ON Tr8.Champ2 = Tr53.Champ1;
 
 
-CREATE VIEW LA_measure_for_SensorCategory AS
-SELECT LA_sensor.Champ2, LA_Measure.Champ2
-FROM LA_Measure 
-INNER JOIN LA_sensor ON LA_Measure.Champ1 = LA_sensor.Champ1
-ORDER BY LA_sensor.Champ2;
-
-
 CREATE VIEW LA_Measure_index AS
 SELECT Tr6.Champ1, Tr50.Champ2
 FROM Tr6 
@@ -174,37 +135,6 @@ SELECT DISTINCT Tr8.Champ1, Tr55.Champ2
 FROM Tr8 
 INNER JOIN Tr55 ON Tr8.Champ2 = Tr55.Champ1;
 
-
-CREATE VIEW LA_Papers AS
-SELECT Tr1.[ID], Tr1.[Champ2], Tr1.[Champ3]
-FROM Tr1;
-
-
-CREATE VIEW LA_papers_and_sensors AS
-SELECT LA_Papers.Champ3, LA_sensor.Champ2
-FROM LA_Papers 
-INNER JOIN LA_sensor ON LA_Papers.ID = LA_sensor.Champ1;
-
-
-CREATE VIEW LA_papers_for_claims AS
-SELECT LA_claims.Champ3, LA_Papers.Champ3
-FROM LA_claims 
-INNER JOIN LA_Papers ON LA_claims.Champ1 = LA_Papers.ID
-ORDER BY LA_claims.Champ3;
-
-
-CREATE VIEW LA_papers_for_stimulusCategory-film AS
-SELECT LA_Papers.Champ3
-FROM LA_Papers 
-INNER JOIN LA_StimulusCategory ON LA_Papers.ID = LA_StimulusCategory.Champ1
-WHERE (((LA_StimulusCategory.Champ2)="film"));
-
-
-CREATE VIEW LA_PsychologicalInference_for_StimulusCategory AS
-SELECT LA_StimulusCategory.Champ2, LA_Inference.Champ3
-FROM LA_Inference 
-INNER JOIN LA_StimulusCategory ON LA_Inference.Champ1 = LA_StimulusCategory.Champ1
-ORDER BY LA_StimulusCategory.Champ2;
 
 
 CREATE VIEW LA_related_measure_index AS
@@ -232,16 +162,15 @@ INNER JOIN Tr30 ON Tr3.Champ2 = Tr30.Champ1;
 
 
 CREATE VIEW LA_sensor AS
-SELECT DISTINCT Tr48.Champ2
+SELECT DISTINCT Tr6.Champ2 as Champ1, Tr48.Champ2 as Champ2
 FROM Tr6 
 INNER JOIN Tr48 ON Tr6.Champ2 = Tr48.Champ1
 ORDER BY Tr48.Champ2;
 
-
-CREATE VIEW LA_Sensor_input AS
-SELECT DISTINCT Tr6.Champ1, Tr59.Champ2
-FROM (Tr6 INNER JOIN Tr51 ON Tr6.Champ2 = Tr51.Champ1) 
-INNER JOIN (Tr60 INNER JOIN Tr59 ON Tr60.Champ2 = Tr59.Champ1) ON Tr51.Champ3 = Tr60.Champ1;
+CREATE VIEW HM_papers_with_sensors AS
+SELECT DISTINCT Count(LA_sensor.Champ2) AS expr1
+FROM LA_sensor 
+INNER JOIN LA_Papers ON LA_sensor.Champ1 = LA_Papers.ID;
 
 
 CREATE VIEW LA_StimulusCategory AS
@@ -262,27 +191,6 @@ FROM Tr10
 INNER JOIN Tr18 ON Tr10.Champ2 = Tr18.Champ1;
 
 
-CREATE VIEW LA_TEAM_and_papers AS
-SELECT LA_Papers.Champ3, LA_ChillsPeople_Lab.Champ3
-FROM LA_ChillsPeople_Lab 
-INNER JOIN LA_Papers ON LA_ChillsPeople_Lab.Champ1 = LA_Papers.ID
-ORDER BY LA_Papers.Champ3;
-
-
-CREATE VIEW LA_team_for_sensorCategory AS
-SELECT LA_StimulusCategory.Champ2, LA_ChillsPeople_Lab.Champ3
-FROM LA_StimulusCategory 
-INNER JOIN LA_ChillsPeople_Lab ON LA_StimulusCategory.Champ1 = LA_ChillsPeople_Lab.Champ1
-ORDER BY LA_StimulusCategory.Champ2;
-
-
-CREATE VIEW LA_teams_for_stimulusCategory AS
-SELECT LA_StimulusCategory.Champ2, LA_ChillsPeople_Lab.Champ3
-FROM LA_StimulusCategory 
-INNER JOIN LA_ChillsPeople_Lab ON LA_StimulusCategory.Champ1 = LA_ChillsPeople_Lab.Champ1
-ORDER BY LA_StimulusCategory.Champ2;
-
-
 CREATE VIEW LA_unit AS
 SELECT DISTINCT Tr7.Champ1, Tr26.Champ2
 FROM Tr7 
@@ -295,27 +203,23 @@ FROM Tr14
 INNER JOIN Tr21 ON Tr14.Champ2 = Tr21.Champ1;
 
 
+
+
+CREATE VIEW MH_papers AS
+SELECT Count(LA_Papers.Champ3) AS Expr1
+FROM LA_Papers;
+
+
+CREATE VIEW HM_teams AS
+SELECT Count(Champ3) AS Expr1
+FROM LA_ChillsPeople_Lab;
+
+
 CREATE VIEW MC_sensor AS
 SELECT LA_sensor.Champ2, Count(LA_sensor.Champ2) AS CompteDeChamp2
 FROM LA_sensor
 GROUP BY LA_sensor.Champ2
 ORDER BY Count(LA_sensor.Champ2) DESC;
-
-
-CREATE VIEW MC_sensor_with_CategoryPoerty AS
-SELECT LA_sensor.Champ2, Count(LA_sensor.Champ2) AS CompteDeChamp2
-FROM LA_sensor 
-INNER JOIN Tr24 ON LA_sensor.Champ1 = Tr24.Champ1
-GROUP BY LA_sensor.Champ2, Tr24.Champ2
-HAVING (((Tr24.Champ2)="poetry"))
-ORDER BY Count(LA_sensor.Champ2) DESC;
-
-
-CREATE VIEW MC_stimulusCategory AS
-SELECT LA_StimulusCategory.Champ2, Count(LA_StimulusCategory.Champ2) AS CompteDeChamp2
-FROM LA_StimulusCategory
-GROUP BY LA_StimulusCategory.Champ2
-ORDER BY Count(LA_StimulusCategory.Champ2) DESC;
 
 
 CREATE VIEW MC_team AS
@@ -325,7 +229,161 @@ GROUP BY LA_ChillsPeople_Lab.Champ3
 ORDER BY Count(LA_ChillsPeople_Lab.Champ3) DESC;
 
 
-CREATE VIEW MH_papers AS
-SELECT Count(LA_Papers.Champ3) AS Expr1
-FROM LA_Papers;
+
+CREATE VIEW LA_papers_for_claims AS
+SELECT
+    LA_claims.Champ3,
+    LA_Papers.Champ3 as A
+FROM
+    LA_claims
+INNER JOIN LA_Papers ON LA_claims.Champ1 = LA_Papers.ID
+ORDER BY
+    LA_claims.Champ3;
+    
+    
+    CREATE VIEW LA_Sensor_input AS
+SELECT DISTINCT Tr6.Champ1, Tr59.Champ2
+FROM (Tr6 INNER JOIN Tr51 ON Tr6.Champ2 = Tr51.Champ1) 
+INNER JOIN (Tr60 INNER JOIN Tr59 ON Tr60.Champ2 = Tr59.Champ1) ON Tr51.Champ3 = Tr60.Champ1;
+
+
+ CREATE VIEW LA_TEAM_and_papers AS
+SELECT LA_Papers.Champ3, LA_ChillsPeople_Lab.Champ3 as A
+FROM LA_ChillsPeople_Lab 
+INNER JOIN LA_Papers ON LA_ChillsPeople_Lab.Champ1 = LA_Papers.ID
+ORDER BY LA_Papers.Champ3;
+   
+   
+   
+CREATE VIEW MC_stimulusCategory AS
+SELECT LA_StimulusCategory.Champ2, Count(LA_StimulusCategory.Champ2) AS CompteDeChamp2
+FROM LA_StimulusCategory
+GROUP BY LA_StimulusCategory.Champ2
+ORDER BY Count(LA_StimulusCategory.Champ2) DESC;
+
+
+CREATE VIEW MC_sensor_with_CategoryPoerty AS
+SELECT LA_sensor.Champ2 AS A, Count(LA_sensor.Champ2) AS CompteDeChamp2, Tr24.Champ2
+FROM LA_sensor 
+INNER JOIN Tr24 ON LA_sensor.Champ1 = Tr24.Champ1
+GROUP BY LA_sensor.Champ2, Tr24.Champ2
+HAVING ((Tr24.Champ2)="poetry")
+ORDER BY Count(LA_sensor.Champ2) DESC;
+
+
+CREATE VIEW LA_teams_for_stimulusCategory AS
+SELECT LA_StimulusCategory.Champ2, LA_ChillsPeople_Lab.Champ3
+FROM LA_StimulusCategory 
+INNER JOIN LA_ChillsPeople_Lab ON LA_StimulusCategory.Champ1 = LA_ChillsPeople_Lab.Champ1
+ORDER BY LA_StimulusCategory.Champ2;
+
+
+CREATE VIEW LA_team_for_sensorCategory AS
+SELECT LA_StimulusCategory.Champ2, LA_ChillsPeople_Lab.Champ3
+FROM LA_StimulusCategory 
+INNER JOIN LA_ChillsPeople_Lab ON LA_StimulusCategory.Champ1 = LA_ChillsPeople_Lab.Champ1
+ORDER BY LA_StimulusCategory.Champ2;
+
+
+CREATE VIEW LA_PsychologicalInference_for_StimulusCategory AS
+SELECT LA_StimulusCategory.Champ2, LA_Inference.Champ3
+FROM LA_Inference 
+INNER JOIN LA_StimulusCategory ON LA_Inference.Champ1 = LA_StimulusCategory.Champ1
+ORDER BY LA_StimulusCategory.Champ2;
+
+
+CREATE VIEW LA_papers_for_stimulusCategory_film AS
+SELECT LA_Papers.Champ3
+FROM LA_Papers 
+INNER JOIN LA_StimulusCategory ON LA_Papers.ID = LA_StimulusCategory.Champ1
+WHERE (((LA_StimulusCategory.Champ2)="film"));
+
+
+CREATE VIEW LA_papers_and_sensors AS
+SELECT LA_Papers.Champ3, LA_sensor.Champ2
+FROM LA_Papers 
+INNER JOIN LA_sensor ON LA_Papers.ID = LA_sensor.Champ1;
+
+
+CREATE VIEW LA_measure_for_SensorCategory AS
+SELECT LA_sensor.Champ2, LA_Measure.Champ2 as A
+FROM LA_Measure 
+INNER JOIN LA_sensor ON LA_Measure.Champ1 = LA_sensor.Champ1
+ORDER BY LA_sensor.Champ2;
+
+
+CREATE VIEW LA_for_stimulusCategory_music_andsensor_ecg AS
+SELECT LA_Papers.Champ3
+FROM (LA_Papers INNER JOIN LA_StimulusCategory ON LA_Papers.ID = LA_StimulusCategory.Champ1) 
+INNER JOIN LA_sensor ON LA_Papers.ID = LA_sensor.Champ1
+WHERE (((LA_StimulusCategory.Champ2)="music") AND ((LA_sensor.Champ2)="ECG"));
+
+
+CREATE VIEW LA_chills_lab_and_papers AS
+SELECT LA_ChillsPeople_Lab.Champ3, LA_Papers.Champ3 as A
+FROM LA_ChillsPeople_Lab 
+INNER JOIN LA_Papers ON LA_ChillsPeople_Lab.Champ1 = LA_Papers.ID
+ORDER BY LA_ChillsPeople_Lab.Champ3;
+
+
+CREATE VIEW HM_papers_with_sensors AS
+SELECT DISTINCT LA_Papers.Champ3, Count(LA_sensor.Champ2) AS CompteDeChamp2
+FROM LA_Papers 
+INNER JOIN LA_sensor ON LA_Papers.ID = LA_sensor.Champ1
+GROUP BY LA_Papers.Champ3;
+
+
+CREATE VIEW F1cB_F13cB AS
+SELECT LA_Papers.Champ2 as A, LA_ChillsPeople_Discipline.Champ2, LA_Papers.Champ3
+FROM LA_Papers 
+INNER JOIN LA_ChillsPeople_Discipline ON LA_Papers.ID = LA_ChillsPeople_Discipline.ID;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
